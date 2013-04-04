@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans 	xmlns="http://www.springframework.org/schema/beans" 
+    	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    	xmlns:p="http://www.springframework.org/schema/p" 
+    	xmlns:context="http://www.springframework.org/schema/context"
+    	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+     	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd   
+     	http://www.springframework.org/schema/context 
+     	http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+		<!-- Login Controllers -->
+
+ 	<bean name="/login.htm" class="com.qaitdevlabs.ipl.login.web.LoginController">
+ 	    <property name="validator" ref="loginFormValidator" />
+ 	    <property name="userService" ref="userService"/>
+		<property name="commandClass" value="com.qaitdevlabs.ipl.login.form.LoginForm"/>
+		<property name="formView"  value="login"/>
+		<property name="successView" value="matchesViewRedirect"/>	
+	 </bean> 
+	 
+	 <bean name="/matchesView.htm" class="com.qaitdevlabs.ipl.matchesView.web.MatchesViewController">
+		<property name="userChoiceService" ref="userChoiceService"/>
+	 	<property name="matchDetailService" ref="matchDetailService"/>
+		<property name="commandClass" value="com.qaitdevlabs.ipl.matchesView.form.MatchesViewForm"/>
+		<property name="formView"  value="matchesView"/>		
+	 </bean>
+	 
+	 <bean name="/userChoice.htm" class="com.qaitdevlabs.ipl.userchoice.web.UserChoiceController">
+	    <property name="matchDetailsService" ref="matchDetailService"/>
+		<property name="userChoiceService" ref="userChoiceService"/>
+		<!-- <property name="successView"  value="matchesViewRedirect"/>	 -->	
+	 </bean>
+	 
+	 <bean name="/loginFalied.htm" class="com.qaitdevlabs.ipl.login.web.LoginFailedController">	
+	 </bean>
+	 
+	 <bean name="/logout.htm" class="com.qaitdevlabs.ipl.login.web.LogoutController">	
+	 </bean>
+	 
+	 <bean id="loginRedirect" class="org.springframework.web.servlet.view.RedirectView">
+           <property name="url" value="login.htm" />
+    </bean>
+</beans>
+
+
+
+
+
+
+
+

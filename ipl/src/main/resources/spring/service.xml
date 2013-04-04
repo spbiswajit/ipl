@@ -1,0 +1,19 @@
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+	xmlns:beans="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+	http://www.springframework.org/schema/security
+	http://www.springframework.org/schema/security/spring-security-3.1.xsd">
+	
+	<beans:bean id="userService" class="com.qaitdevlabs.ipl.service.impl.UserServiceImpl">
+		<beans:property name="userDao" ref="userDao"></beans:property>
+	</beans:bean>
+
+    <beans:bean id="matchDetailService" class="com.qaitdevlabs.ipl.service.impl.MatchDetailServiceImpl">
+		<beans:property name="matchDetailDao" ref="matchDetailDao"></beans:property>
+	</beans:bean>
+	
+	<beans:bean id="userChoiceService" class="com.qaitdevlabs.ipl.service.impl.UserChoiceServiceImpl">
+		<beans:property name="userChoiceDao" ref="userChoiceDao"></beans:property>
+	</beans:bean>
+</beans:beans>

@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.qaitdevlabs.ipl.domain.MatchDetails" table="match_details">
+		<id name="id" type="java.lang.Long">
+			<column name="id" />
+			<generator class="native" />
+		</id>
+		
+		<property name="venue" type="string">
+			<column name="venue" length="64" not-null="true" />
+		</property>
+		
+		<property name="matchDate" type="java.util.Date">
+			<column name="match_date"  not-null="true"/>
+		</property>
+		
+		<many-to-one name="team1" class="com.qaitdevlabs.ipl.domain.Team"  column="team1_id" lazy="false"/>
+		<many-to-one name="team2" class="com.qaitdevlabs.ipl.domain.Team"  column="team2_id" lazy="false"/>
+		<many-to-one name="winnerTeam" class="com.qaitdevlabs.ipl.domain.Team"  column="winner_team_id" lazy="false"/>
+		
+	</class>
+</hibernate-mapping>

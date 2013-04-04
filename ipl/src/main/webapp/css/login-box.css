@@ -1,0 +1,74 @@
+body{
+	background: url(../images/background.png) #000 no-repeat top 20px center fixed; 
+			-webkit-background-size: cover;
+			-moz-background-size: cover;
+			-o-background-size: cover;
+			background-size: 100%;
+			background-color: white;
+	}
+
+.rounded-box { -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px; }
+#login-box {
+	width:333px;
+	height: 352px;
+	padding: 100px 0 0 73%;
+	color: #013565;
+	font: 12px Verdana, Helvetica, sans-serif;
+	font-weight:bold;
+	position: fixed;
+	
+ 
+}
+
+#login-box img {
+	border:none;
+}
+
+#login-box h2 {
+	padding: 7px 76px 0 90px;
+	margin:0;
+	color: #ebebeb;
+	font: bold 18px "Calibri", Verdana;
+}
+
+
+#login-box-name {
+	width:80px;
+	padding: 14px 10px 0 0;
+	margin:0 0 7px 90px;
+}
+
+#login-box-field {
+	float: left;
+	display:inline;
+	width:230px;
+	margin:0;
+	margin:0 0 7px 90px;
+}
+
+
+.form-login  {
+	width: 175px;
+	padding: 0px 0px 0px 0px;
+	border: 1px solid #0d2c52;
+	font-size: 14px;
+}
+
+
+.login-box-options  {
+	clear:both;
+	padding-left:91px;
+	font-size: 11px;
+}
+
+.login-box-options a {
+	color: #ebebeb;
+	font-size: 11px;
+}
+#btn-submit{
+background-color:#013565;
+cursor:pointer;
+}
+#btn-submit:hover{
+background-color:#195284;
+}
