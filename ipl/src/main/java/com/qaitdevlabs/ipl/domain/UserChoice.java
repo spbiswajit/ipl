@@ -9,6 +9,8 @@ public class UserChoice {
 	private MatchDetails match;
 	private Team userChoice;
 	private Date lastUpdated;
+	private int userBid;
+	private int userScore;
 	
 	public Long getId() {
 		return id;
@@ -39,5 +41,17 @@ public class UserChoice {
 	}
 	public void setLastUpdated(Date lastUpdated) {
 		this.lastUpdated = lastUpdated;
+	}
+	public int getUserBid() {
+		return userBid;
+	}
+	public void setUserBid(int userBid) {
+		this.userBid = userBid;
+	}
+	public int getUserScore() {
+		return userScore;
+	}
+	public void setUserScore(int userScore) {
+		this.userScore = userScore;
 	}
 }

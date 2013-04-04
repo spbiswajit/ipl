@@ -13,39 +13,39 @@
  <!-- <link href="css/login-box.css" rel="stylesheet" type="text/css" /> -->
    <script type="text/javascript" src='js/jquery-1.4.4.min.js'></script>
    <script><!--
-      var teamId;
-      var selectBoxId;
-      var buttonId;
-      function getSelectedTeam(selectbox) {
-    	  selectBoxId = selectbox.id;
-    	  teamId  = selectbox.options[selectbox.selectedIndex].value;
-      }
-      
-      function getSubmitButton(submit) {
-    	  buttonId = submit.id;
-    	  if(selectBoxId == buttonId) {
-    		    var data = { teamId : teamId, matchId : buttonId};
-    	      	 $.ajax({
-    	       		   url : "userChoice.htm",
-    	       		   dataType: "text",
-    	       		   data : data,
-    	       		   type : "POST",
-    	       		   success : function(data) {
-    	       			alert("Entry is saved");
-    	       			/*  $('input#'+buttonId).after('<span style="color: green;" id="errorSpan" class="error"></br>Entry is saved.</span>');
-    	       			 console.log($('input#'+buttonId)); */
-    	       		   },
-    	       		   error : function(jqXHR, textStatus, errorThrown) {
-    	       			alert("Entry was not get saved");
-    	       			/*  $("#errorSpan").remove();
-    	       			 $('input#'+buttonId).after('<span style="color: red;" id="errorSpan" class="error"></br>Entry was not get saved.</span>');  */
-    	       		   }
-    	       		  }); 
-    	  } else {
-    		  alert("Please select proper entry");
-    	  }
-      }
-
+   var teamId;
+   var selectBoxId;
+   var buttonId;
+   var bidSelectBoxId;
+ 
+   function getSubmitButton(submit) {
+ 	  buttonId = submit.id;
+ 	  bidSelectBoxClass = parseInt(buttonId,10) + 100;
+ 	  teamId = $("select."+buttonId).val();
+ 	  bidSelectBoxValue = $("select."+bidSelectBoxClass).val();
+ 	
+ 	  if((selectBoxId == buttonId || bidSelectBoxClass == parseInt(buttonId,10) + 100) && teamId != 0) {
+ 		    var data = { teamId : teamId, matchId : buttonId, userBid : bidSelectBoxValue};
+ 	      	 $.ajax({
+ 	       		   url : "userChoice.htm",
+ 	       		   dataType: "text",
+ 	       		   data : data,
+ 	       		   type : "POST",
+ 	       		   success : function(data) {
+ 	       			alert("Entry is saved");
+ 	       			/*  $('input#'+buttonId).after('<span style="color: green;" id="errorSpan" class="error"></br>Entry is saved.</span>');
+ 	       			 console.log($('input#'+buttonId)); */
+ 	       		   },
+ 	       		   error : function(jqXHR, textStatus, errorThrown) {
+ 	       			alert("Entry was not get saved");
+ 	       			/*  $("#errorSpan").remove();
+ 	       			 $('input#'+buttonId).after('<span style="color: red;" id="errorSpan" class="error"></br>Entry was not get saved.</span>');  */
+ 	       		   }
+ 	       		  }); 
+ 	  } else {
+ 		  alert("Please select proper entry");
+ 	  }
+   }
       $( document ).ready(function() {
     	  $(".test1").each(function () {
            var id = $(this).attr('id');
@@ -60,7 +60,8 @@
                $("input."+id).attr('disabled', 'disabled');
                }
 
-          });
+          });    
+    	  
     	});
   
    </script>
@@ -84,10 +85,12 @@
                  <td>Match Number</td>
      	         <td>Home Team</td>
      	         <td>Visiting Team</td>
-     		 <td>Venue</td>
+     		      <td>Venue</td>
      	         <td>DateTime</td>
-     		 <td>Choice</td> 
-     		 <td> </td>
+     		     <td>Choice</td> 
+     		     <td>Bid Points</td>
+     		     <td>Odds</td>
+     		     <td> </td>
 		 <td>Winner</td>
 	      </tr>
 			 
@@ -121,6 +124,44 @@
      			  
      			    </select>
      			 </td> 
+     			 <td>
+		          <select class="${detail.matchId + 100}" onchange="getSelectedBid(this)">
+			           <option value="10"> 10 </option>
+			           <c:choose>
+			              <c:when test="${detail.userBid eq 20}">
+			               		<option value="20" selected="selected"> 20 </option>
+			              </c:when>
+			              <c:otherwise>
+			              		<option value="20"> 20 </option>
+			              </c:otherwise>
+			           </c:choose>
+			           <c:choose>
+			              <c:when test="${detail.userBid eq 30}">
+			               		<option value="30" selected="selected"> 30 </option>
+			              </c:when>
+			              <c:otherwise>
+			              		<option value="30"> 30 </option>
+			              </c:otherwise>
+			           </c:choose>
+			           <c:choose>
+			              <c:when test="${detail.userBid eq 40}">
+			               		<option value="40" selected="selected"> 40 </option>
+			              </c:when>
+			              <c:otherwise>
+			              		<option value="40"> 40 </option>
+			              </c:otherwise>
+			           </c:choose>
+			           <c:choose>
+			              <c:when test="${detail.userBid eq 50}">
+			               		<option value="50" selected="selected"> 50 </option>
+			              </c:when>
+			              <c:otherwise>
+			              		<option value="50"> 50 </option>
+			              </c:otherwise>
+			           </c:choose>
+		          </select>
+		         </td>
+		         <td></td>
      			 <td>
      			    <input class="${detail.matchId}" type="submit" value="Save" id="${detail.matchId}" onclick="getSubmitButton(this)"></input>
      			 </td>

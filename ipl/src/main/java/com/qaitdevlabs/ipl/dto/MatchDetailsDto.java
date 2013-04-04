@@ -10,6 +10,7 @@ public class MatchDetailsDto {
 	private long team2Id;
 	private long matchId;
 	private long userChoice;
+	private int userBid;
 	
 	public String getTeam1() {
 		return team1;
@@ -58,5 +59,11 @@ public class MatchDetailsDto {
 	}
 	public void setUserChoice(long userChoice) {
 		this.userChoice = userChoice;
+	}
+	public int getUserBid() {
+		return userBid;
+	}
+	public void setUserBid(int userBid) {
+		this.userBid = userBid;
 	}
 }

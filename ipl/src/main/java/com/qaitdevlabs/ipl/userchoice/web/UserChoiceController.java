@@ -26,6 +26,7 @@ public class UserChoiceController extends AbstractController {
 		
 		long matchId = Long.valueOf(request.getParameter("matchId"));
 		long teamId = Long.valueOf(request.getParameter("teamId"));
+		int userBid = Integer.valueOf(request.getParameter("userBid"));
 		
 		HttpSession httpSession = request.getSession(true);
 		if(httpSession != null) {
@@ -35,6 +36,7 @@ public class UserChoiceController extends AbstractController {
 			if(userChoice!=null) {
 				userChoice.setUserChoice(userChoiceTeam);
 				userChoice.setLastUpdated(new Date());
+				userChoice.setUserBid(userBid);
 				userChoiceService.update(userChoice);
 			} else {
 				UserChoice newUserChoice = new UserChoice();
@@ -42,6 +44,7 @@ public class UserChoiceController extends AbstractController {
 				newUserChoice.setMatch(matchDetailsService.getMatchDetailById(matchId));
 				newUserChoice.setUserChoice(userChoiceTeam);
 				newUserChoice.setLastUpdated(new Date());
+				newUserChoice.setUserBid(userBid);
 				userChoiceService.save(newUserChoice);
 			}
 		} else {

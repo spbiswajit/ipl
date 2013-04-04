@@ -10,6 +10,7 @@ public class MatchDetails {
 	private String venue;
 	private Date matchDate;
 	private Team winnerTeam;
+	private boolean scoreUpdated;
 	
 	public Long getId() {
 		return id;
@@ -46,5 +47,11 @@ public class MatchDetails {
 	}
 	public void setWinnerTeam(Team winnerTeam) {
 		this.winnerTeam = winnerTeam;
+	}
+	public boolean getScoreUpdated() {
+		return scoreUpdated;
+	}
+	public void setScoreUpdated(boolean scoreUpdated) {
+		this.scoreUpdated = scoreUpdated;
 	}
 }

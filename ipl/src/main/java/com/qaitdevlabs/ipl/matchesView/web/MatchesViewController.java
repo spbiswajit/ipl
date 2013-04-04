@@ -70,6 +70,7 @@ public class MatchesViewController extends SimpleFormController {
 					for(UserChoice choice : userChoiceList) {
 						if(choice.getMatch().getId().longValue() == matchDetails.getId().longValue()) {
 							matchDetailsDto.setUserChoice(choice.getUserChoice().getId());
+							matchDetailsDto.setUserBid(choice.getUserBid());
 							flag = true;
 							break;
 						}

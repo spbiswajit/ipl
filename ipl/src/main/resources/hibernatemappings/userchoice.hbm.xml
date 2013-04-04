@@ -13,6 +13,14 @@
 			<column name="last_update"  not-null="true"/>
 		</property>
 		
+		<property name="userBid" type="int">
+			<column name="user_bid" default="10"/>
+		</property>
+		
+		<property name="userScore" type="int">
+			<column name="user_score"  default="0"/>
+		</property>
+		
 		<many-to-one name="user" class="com.qaitdevlabs.ipl.domain.User"  column="user_id" lazy="false"/>
 		<many-to-one name="match" class="com.qaitdevlabs.ipl.domain.MatchDetails"  column="match_detail_id" lazy="false"/>
 		<many-to-one name="userChoice" class="com.qaitdevlabs.ipl.domain.Team"  column="user_team_id" lazy="false"/>

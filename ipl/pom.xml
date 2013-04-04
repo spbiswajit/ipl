@@ -141,6 +141,12 @@
 			<version>2.4</version>
 		</dependency>
     
+        <!-- Quartz Scheduler Dependency -->
+		<dependency>
+		    <groupId>org.quartz-scheduler</groupId>
+		    <artifactId>quartz</artifactId>
+		    <version>1.8.5</version>
+		</dependency>
   </dependencies>
   
   	<build>

@@ -17,6 +17,10 @@
 			<column name="match_date"  not-null="true"/>
 		</property>
 		
+		<property name="scoreUpdated" type="boolean">
+			<column name="is_score_updated" not-null="true" default="false" />
+		</property>
+		
 		<many-to-one name="team1" class="com.qaitdevlabs.ipl.domain.Team"  column="team1_id" lazy="false"/>
 		<many-to-one name="team2" class="com.qaitdevlabs.ipl.domain.Team"  column="team2_id" lazy="false"/>
 		<many-to-one name="winnerTeam" class="com.qaitdevlabs.ipl.domain.Team"  column="winner_team_id" lazy="false"/>
