@@ -5,6 +5,7 @@ body{
 			-o-background-size: cover;
 			background-size: 130%;
 	}
+.rounded-box { -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px; }
 .divStyle{
 	color: #013565;
 	font: 18px Verdana, Helvetica, sans-serif;

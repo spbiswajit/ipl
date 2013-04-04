@@ -29,4 +29,19 @@ public class UserDaoImpl extends HibernateDaoSupport implements UserDao {
 		return savedUser;		
 	}
 
+	@Override
+	public void update(User user) {
+		Session session = null;
+		try {
+			session = getSessionFactory().openSession();
+			session.update(user);
+		} catch (Exception e) {
+			throw new IplCustomException();
+		} finally {
+			session.flush();
+			session.close();
+		}
+
+	}
+
 }

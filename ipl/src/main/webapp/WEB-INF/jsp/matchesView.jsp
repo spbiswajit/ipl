@@ -10,9 +10,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml">	
 <head>
  <link href="css/tableStyle.css" rel="stylesheet" type="text/css" />
+ <link href="css/modal.css" rel="stylesheet" type="text/css" />
  <!-- <link href="css/login-box.css" rel="stylesheet" type="text/css" /> -->
    <script type="text/javascript" src='js/jquery-1.4.4.min.js'></script>
-   <script><!--
+   <script type="text/javascript" src='js/modal.js'></script>
+   <script>
    var teamId;
    var selectBoxId;
    var buttonId;
@@ -32,21 +34,21 @@
  	       		   data : data,
  	       		   type : "POST",
  	       		   success : function(data) {
- 	       			alert("Entry is saved");
- 	       			/*  $('input#'+buttonId).after('<span style="color: green;" id="errorSpan" class="error"></br>Entry is saved.</span>');
- 	       			 console.log($('input#'+buttonId)); */
+ 	       			$elt= $('<div id="overlaymodal" style="display: none;"></div><div style="font-size: 14px;">Your Entry is Successfully Saved <div>');
+	       			modal.open({content: $elt});
  	       		   },
  	       		   error : function(jqXHR, textStatus, errorThrown) {
- 	       			alert("Entry was not get saved");
- 	       			/*  $("#errorSpan").remove();
- 	       			 $('input#'+buttonId).after('<span style="color: red;" id="errorSpan" class="error"></br>Entry was not get saved.</span>');  */
+ 	       			$elt= $('<div id="overlaymodal" style="display: none;"></div><div style="font-size: 14px;">Some Error Occured please try again later<div>');
+	       			modal.open({content: $elt});
  	       		   }
  	       		  }); 
  	  } else {
- 		  alert("Please select proper entry");
+ 		 $elt= $('<div id="overlaymodal" style="display: none;"></div><div style="font-size: 14px;">Please select proper Entry<div>');
+		 modal.open({content: $elt});
  	  }
    }
       $( document ).ready(function() {
+    	  $('input').attr('autocomplete','off');
     	  $(".test1").each(function () {
            var id = $(this).attr('id');
            //var d1 = new Date("October 13, 1975 11:13:00")
@@ -56,13 +58,56 @@
            var d1 = new Date(dateString);
            var d2 = new Date();
            if((d1.getTime()-1800000)<d2.getTime()){
-               $("select."+id).attr('disabled', 'disabled');
+               //$("select."+id).attr('disabled', 'disabled');
                $("input."+id).attr('disabled', 'disabled');
                }
 
-          });    
+          });   
     	  
-    	});
+    	  $elt1= $('<div id="overlaymodal" style="display: none;"></div><div id="ChangePasswordDiv">Old Password</div><input type="password" style="margin-top:5px;width:182px;" id="oldPassword" name="q" class="form-login rounded-box" title="oldPassword" value="" size="30" maxlength="2048" /><br/><br/><div id="ChangePasswordDiv">New Password</div><input type="password" style="margin-top:5px;width:182px;" id="newPassword" name="q" class="form-login rounded-box" title="newPassword" value="" size="30" maxlength="2048" /><br/><br/><div id="ChangePasswordDiv">Confirm Password</div><input type="password" style="margin-top:5px;width:182px;" id="confirmPassword" name="q" class="form-login rounded-box" title="confirmPassword" value="" size="30" maxlength="2048" /><br/><br/><br/><div><input id="changePasswordButton" style="background-color:#ebebeb;" type="submit" name="changepasswd" value="Submit" /></div>');
+    	  $('a#changePassword').click(function(e){
+				modal.open({content: $elt1});
+				e.preventDefault();
+			});	
+  	  
+	  	  $('#changePasswordButton').live('click',function() {
+	  		  var oldPasswordData = $("#oldPassword").val();
+	  		  var newPasswordData = $("#newPassword").val();
+	  		  var ConfirmPasswordData = $("#confirmPassword").val();
+	  		  
+	  		  if(oldPasswordData.length != 0 && newPasswordData.length != 0 && ConfirmPasswordData.length != 0){
+	  			  if(newPasswordData == ConfirmPasswordData ){
+	  				  var data = { oldPassword : oldPasswordData, newPassword : newPasswordData, confirmPassword : ConfirmPasswordData};
+	  			     	 $.ajax({
+	  	    	       		   url : "changePassword.htm",
+	  	    	       		   dataType: "text",
+	  	    	       		   data : data,
+	  	    	       		   type : "POST",
+	  	    	       		   success : function(data) {
+	  	    	       			$('input[type="password"]').val('');
+	  	    	       			 $elt4= $('<div id="overlaymodal" style="display: none;"></div><div style="font-size: 14px;">Password changed Successfully<div>');
+	  	     	       			  modal.open({content: $elt4});
+	  	    	       		   },
+	  	    	       		   error : function(jqXHR, textStatus, errorThrown) {
+	  	    	       			$('input[type="password"]').val('');
+	  	    	       			 $elt5= $('<div id="overlaymodal" style="display: none;"></div><div style="font-size: 14px;">Unable to change Password<div>');
+	 	     	       			  	 modal.open({content: $elt5});
+	  	    	       		   }
+	  	    	       		  }); 
+	  			  }else{
+	  				  $('input[type="password"]').val('');
+	  				  $elt3= $('<div id="overlaymodal" style="display: none;"></div><div style="font-size: 14px;">Password did not match<div>');
+		       			  modal.open({content: $elt3});
+	  			  }
+	  		  }else{
+	  			  $('input[type="password"]').val('');
+	  			  $elt2= $('<div id="overlaymodal" style="display: none;"></div><div style="font-size: 14px;">Password fields should not be empty<div>');
+		       			modal.open({content: $elt2});
+	  		  }
+	  		  
+	  	  });
+  	  
+  	});
   
    </script>
 </head>
@@ -75,9 +120,15 @@
   	<div class="divStyle" style="float:right"><a href="logout.htm">Log Out</a></div>
   </div>
 
- <c:if test="${not empty sessionScope.user}"> 
-    <div class="divStyle" style="float:right">Welcome ${sessionScope.user.userName}</div>
-  </c:if> 
+ <div>
+	<div class="divStyle" style="display: inline;float: left;">
+ 	<a id="changePassword" href="changePassword.htm" style="color: #013565;font-size: 12px;">Change Password</a>
+ 	</div>
+	 <c:if test="${not empty sessionScope.user}">  
+	    <div class="divStyle" style="float:right;">Welcome ${sessionScope.user.userName}</div>
+	  </c:if> 
+  </div> 
+  
   <br/><br/>
    <div class="CSSTableGenerator" >  
       <table>

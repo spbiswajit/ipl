@@ -26,6 +26,9 @@
 		<property name="formView"  value="matchesView"/>		
 	 </bean>
 	 
+	 <bean name="/changePassword.htm" class="com.qaitdevlabs.ipl.userchoice.web.ChangePasswordController">
+	    <property name="userService" ref="userService"/>
+	 </bean>
 	 <bean name="/userChoice.htm" class="com.qaitdevlabs.ipl.userchoice.web.UserChoiceController">
 	    <property name="matchDetailsService" ref="matchDetailService"/>
 		<property name="userChoiceService" ref="userChoiceService"/>
