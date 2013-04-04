@@ -23,6 +23,7 @@ public class UserChoiceDaoImpl extends HibernateDaoSupport implements UserChoice
 			 query.setParameter("id", userId);
 			 list = query.list();		
 		} catch (Exception e) {
+			System.out.println(e.getMessage());
 			throw new IplCustomException();
 		} finally {
 			session.close();
@@ -75,5 +76,23 @@ public class UserChoiceDaoImpl extends HibernateDaoSupport implements UserChoice
 			session.close();
 		}
 		return userChoice;		
+	}
+
+	@Override
+	public List<UserChoice> getChoicesForAllUsers() {
+		Session session = null;
+		List<UserChoice> list = null;
+		try {
+ 			 session = getSessionFactory().openSession();
+			 String queryString = "from UserChoice";
+			 Query query = session.createQuery(queryString);
+			 list = query.list();		
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			throw new IplCustomException();
+		} finally {
+			session.close();
+		}
+		return list;		
 	}
 }

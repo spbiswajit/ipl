@@ -11,6 +11,8 @@ public class MatchDetailsDto {
 	private long matchId;
 	private long userChoice;
 	private int userBid;
+	private String winnerTeam;
+	private String teamOdds;
 	
 	public String getTeam1() {
 		return team1;
@@ -65,5 +67,17 @@ public class MatchDetailsDto {
 	}
 	public void setUserBid(int userBid) {
 		this.userBid = userBid;
+	}
+	public String getWinnerTeam() {
+		return winnerTeam;
+	}
+	public void setWinnerTeam(String winnerTeam) {
+		this.winnerTeam = winnerTeam;
+	}
+	public String getTeamOdds() {
+		return teamOdds;
+	}
+	public void setTeamOdds(String teamOdds) {
+		this.teamOdds = teamOdds;
 	}
 }

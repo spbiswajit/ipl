@@ -10,4 +10,5 @@ public interface UserChoiceDao {
 	public void save(UserChoice userChoice);
 	public UserChoice getUserChoiceByMatch(long matchId, long userId);
 	public void update(UserChoice userChoice);
+	public List<UserChoice> getChoicesForAllUsers();
 }

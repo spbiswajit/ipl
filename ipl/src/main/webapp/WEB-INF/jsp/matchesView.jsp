@@ -36,6 +36,7 @@
  	       		   success : function(data) {
  	       			$elt= $('<div id="overlaymodal" style="display: none;"></div><div style="font-size: 14px;">Your Entry is Successfully Saved <div>');
 	       			modal.open({content: $elt});
+	       			window.setTimeout('location.reload()', 3000);
  	       		   },
  	       		   error : function(jqXHR, textStatus, errorThrown) {
  	       			$elt= $('<div id="overlaymodal" style="display: none;"></div><div style="font-size: 14px;">Some Error Occured please try again later<div>');
@@ -153,7 +154,7 @@
      			 <td>${detail.venue}</td>
      			 <td id="${detail.matchId}" class="test1">${detail.matchTime}</td>
      			 <td>
-     			    <select id="${detail.matchId}" class="${detail.matchId}" onchange="getSelectedTeam(this)">
+     			    <select id="${detail.matchId}" class="${detail.matchId}">
      			       <option value="0">---Select Team---</option>
      			       <c:choose>
      			          <c:when test="${detail.team1Id eq detail.userChoice}">
@@ -176,7 +177,7 @@
      			    </select>
      			 </td> 
      			 <td>
-		          <select class="${detail.matchId + 100}" onchange="getSelectedBid(this)">
+		          <select class="${detail.matchId + 100}">
 			           <option value="10"> 10 </option>
 			           <c:choose>
 			              <c:when test="${detail.userBid eq 20}">
@@ -212,11 +213,11 @@
 			           </c:choose>
 		          </select>
 		         </td>
-		         <td></td>
+		         <td>${detail.teamOdds}</td>
      			 <td>
      			    <input class="${detail.matchId}" type="submit" value="Save" id="${detail.matchId}" onclick="getSubmitButton(this)"></input>
      			 </td>
-     			 <td></td>
+     			 <td>${detail.winnerTeam}</td>
      		  </tr>	 
   			  </c:forEach>
       </table>

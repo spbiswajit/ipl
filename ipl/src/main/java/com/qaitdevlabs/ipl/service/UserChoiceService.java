@@ -10,4 +10,5 @@ public interface UserChoiceService {
 	 public UserChoice getUserChoiceByMatch(long matchId, long userId);
 	 public void save(UserChoice userChoice);
 	 public void update(UserChoice userChoice);
+	 public List<UserChoice> getChoicesForAllUsers();
 }

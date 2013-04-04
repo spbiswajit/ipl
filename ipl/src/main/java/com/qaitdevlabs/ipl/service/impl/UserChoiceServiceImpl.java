@@ -37,4 +37,9 @@ public class UserChoiceServiceImpl implements UserChoiceService{
 	public void update(UserChoice userChoice) {
 		userChoiceDao.update(userChoice);
 	}
+
+	@Override
+	public List<UserChoice> getChoicesForAllUsers() {
+		return userChoiceDao.getChoicesForAllUsers();
+	}
 }

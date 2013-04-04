@@ -1,0 +1,43 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+<!-- Job details to get status of Instances -->
+	<bean id="scoreUpdateJob" class="com.qaitdevlabs.ipl.jobs.scoreupdatejob.ScoreUpdateJob">
+		
+	</bean>
+	
+	<bean name="scoreUpdateJobScheduler" class="org.springframework.scheduling.quartz.JobDetailBean">
+
+		<property name="jobClass"
+			value="com.qaitdevlabs.ipl.jobs.scoreupdatejob.ScoreUpdateJobScheduler" />
+
+		<property name="jobDataAsMap">
+			<map>
+				<entry key="scoreUpdateJob" value-ref="scoreUpdateJob" />
+			</map>
+		</property>
+	</bean>
+
+	<bean id="cronTriggerForScoreUpdate" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail" ref="scoreUpdateJobScheduler" />
+		<property name="cronExpression" value="0 32 13 * * ?" />
+	</bean>
+
+<!-- Spring job factory configurations -->
+  	<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="jobDetails">
+			<list>
+				<ref bean="scoreUpdateJobScheduler" />
+			</list>
+		</property>
+
+		<property name="triggers">
+			<list>
+				<ref bean="cronTriggerForScoreUpdate" />
+			</list>
+		</property>
+	</bean>  
+
+</beans>
