@@ -114,10 +114,12 @@
 </head>
   <body>
      <div>
-  	<div class="divStyle">Your Score : 100</div>
- 	 <div class="divStyle">Highest Score : 1000</div>
- 	 <div class="divStyle">Lowest Score : 0</div>
-  	<div class="divStyle">Current Position : 10/12</div>
+  	<c:if test="${not empty sessionScope.user}">  
+	    <div class="divStyle">Your Score : ${sessionScope.user.totalScore}</div>
+	</c:if> 
+ 	 <div class="divStyle">Highest Score : ${requestScope.highestScore}</div>
+ 	 <div class="divStyle">Lowest Score : ${requestScope.lowestScore}</div>
+  	<div class="divStyle">Current Position : ${requestScope.position}</div>
   	<div class="divStyle" style="float:right"><a href="logout.htm">Log Out</a></div>
   </div>
 

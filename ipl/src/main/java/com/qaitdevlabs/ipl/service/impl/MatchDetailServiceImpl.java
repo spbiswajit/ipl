@@ -32,4 +32,9 @@ public class MatchDetailServiceImpl implements MatchDetailsService {
 	public Team getTeamById(long teamid) {
 		return matchDetailDao.getTeamById(teamid);
 	}
+
+	@Override
+	public List<MatchDetails> getMatchDetailsForJob() {
+		return matchDetailDao.getMatchDetailsForJob();
+	}
 }

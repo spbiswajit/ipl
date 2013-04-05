@@ -23,6 +23,7 @@ import com.qaitdevlabs.ipl.domain.UserChoice;
 import com.qaitdevlabs.ipl.dto.MatchDetailsDto;
 import com.qaitdevlabs.ipl.service.MatchDetailsService;
 import com.qaitdevlabs.ipl.service.UserChoiceService;
+import com.qaitdevlabs.ipl.service.UserService;
 import com.qaitdevlabs.ipl.util.IplUtil;
 
 @SuppressWarnings("deprecation")
@@ -30,6 +31,7 @@ public class MatchesViewController extends SimpleFormController {
 	
 	private MatchDetailsService matchDetailService;
 	private UserChoiceService userChoiceService;
+	private UserService userService;
 	
 	public MatchesViewController() {
 		setCommandName("matchesViewForm");
@@ -105,8 +107,14 @@ public class MatchesViewController extends SimpleFormController {
 				}
 				referenceData.put("matchDetails", matchDetailList);
 			}
+			
+			request.setAttribute("highestScore", userService.getHighestUserScore());
+			request.setAttribute("lowestScore", userService.getLowestUserScore());
+			int totalUsers = userService.getAllUsersCount();
+			int userPos = userService.getUserPosition(user.getTotalScore()) + 1;
+			request.setAttribute("position", userPos+"/"+totalUsers);
+			
 		}
-		
 		return referenceData;
 	}
 	
@@ -156,5 +164,12 @@ public class MatchesViewController extends SimpleFormController {
 
 	public void setUserChoiceService(UserChoiceService userChoiceService) {
 		this.userChoiceService = userChoiceService;
+	}
+	public UserService getUserService() {
+		return userService;
+	}
+
+	public void setUserService(UserService userService) {
+		this.userService = userService;
 	}
 }

@@ -29,5 +29,25 @@ public class UserServiceImpl implements UserService {
 	public void update(User user) {
 		userDao.update(user);
 	}
+
+	@Override
+	public double getHighestUserScore() {
+		return userDao.getHighestUserScore();
+	}
+
+	@Override
+	public double getLowestUserScore() {
+		return userDao.getLowestUserScore();
+	}
+
+	@Override
+	public int getAllUsersCount() {
+		return userDao.getAllUsersCount();
+	}
+
+	@Override
+	public int getUserPosition(double userScore) {
+		return userDao.getUserPosition(userScore);
+	}
 	
 }

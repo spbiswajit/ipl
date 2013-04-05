@@ -17,5 +17,9 @@
 			<column name="password" length="64" not-null="true" unique="true" />
 		</property>
 		
+		<property name="totalScore" type="double">
+			<column name="total_score" default="10.0"/>
+		</property>
+		
 	</class>
 </hibernate-mapping>

@@ -10,4 +10,5 @@ public interface MatchDetailDao {
 	public List<MatchDetails> getAllMatchDetails();
 	public MatchDetails getMatchDetailById(long matchId);
 	public Team getTeamById(long teamid);
+	public List<MatchDetails> getMatchDetailsForJob();
 }

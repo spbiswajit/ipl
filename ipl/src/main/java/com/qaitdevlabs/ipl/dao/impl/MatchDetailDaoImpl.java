@@ -62,4 +62,20 @@ public class MatchDetailDaoImpl extends HibernateDaoSupport implements MatchDeta
 		return team;	
 	}
 
+	@Override
+	public List<MatchDetails> getMatchDetailsForJob() {
+		Session session = null;
+		List<MatchDetails> list = null;
+		try {
+ 			 session = getSessionFactory().openSession();
+			 String queryString = "from MatchDetails where winnerTeam is not null and scoreUpdated = 0";
+			 list = session.createQuery(queryString).list();
+		} catch (Exception e) {
+			throw new IplCustomException();
+		} finally {
+			session.close();
+		}
+		return list;		
+	}
+
 }

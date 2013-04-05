@@ -10,7 +10,7 @@ public class UserChoice {
 	private Team userChoice;
 	private Date lastUpdated;
 	private int userBid;
-	private int userScore;
+	private double userScore;
 	
 	public Long getId() {
 		return id;
@@ -48,10 +48,10 @@ public class UserChoice {
 	public void setUserBid(int userBid) {
 		this.userBid = userBid;
 	}
-	public int getUserScore() {
+	public double getUserScore() {
 		return userScore;
 	}
-	public void setUserScore(int userScore) {
+	public void setUserScore(double userScore) {
 		this.userScore = userScore;
 	}
 }

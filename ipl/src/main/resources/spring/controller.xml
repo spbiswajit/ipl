@@ -20,6 +20,7 @@
 	 </bean> 
 	 
 	 <bean name="/matchesView.htm" class="com.qaitdevlabs.ipl.matchesView.web.MatchesViewController">
+	    <property name="userService" ref="userService"/>
 		<property name="userChoiceService" ref="userChoiceService"/>
 	 	<property name="matchDetailService" ref="matchDetailService"/>
 		<property name="commandClass" value="com.qaitdevlabs.ipl.matchesView.form.MatchesViewForm"/>

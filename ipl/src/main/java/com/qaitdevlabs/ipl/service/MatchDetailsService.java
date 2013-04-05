@@ -10,4 +10,5 @@ public interface MatchDetailsService {
 	public List<MatchDetails> getAllMatchDetails() throws Exception;
 	public MatchDetails getMatchDetailById(long matchId);
 	public Team getTeamById(long teamid);
+	public List<MatchDetails> getMatchDetailsForJob();
 }

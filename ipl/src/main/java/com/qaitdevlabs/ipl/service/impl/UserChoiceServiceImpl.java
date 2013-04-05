@@ -3,6 +3,7 @@ package com.qaitdevlabs.ipl.service.impl;
 import java.util.List;
 
 import com.qaitdevlabs.ipl.dao.UserChoiceDao;
+import com.qaitdevlabs.ipl.domain.MatchDetails;
 import com.qaitdevlabs.ipl.domain.UserChoice;
 import com.qaitdevlabs.ipl.service.UserChoiceService;
 
@@ -41,5 +42,33 @@ public class UserChoiceServiceImpl implements UserChoiceService{
 	@Override
 	public List<UserChoice> getChoicesForAllUsers() {
 		return userChoiceDao.getChoicesForAllUsers();
+	}
+
+	@Override
+	public List<UserChoice> getWinnerUserChoicesForMatch(long matchDetailId,
+			long winnerId) {
+		return userChoiceDao.getWinnerUserChoicesForMatch(matchDetailId, winnerId);
+	}
+
+	@Override
+	public List<UserChoice> getLooserUserChoicesForMatch(long matchDetailId,
+			long winnerId) {
+		 return userChoiceDao.getLooserUserChoicesForMatch(matchDetailId, winnerId);
+	}
+
+	@Override
+	public int getLooserUsersBidTotalForMatch(long matchDetailId, long winnerId) {
+		return userChoiceDao.getLooserUsersBidTotalForMatch(matchDetailId, winnerId);
+	}
+
+	@Override
+	public int getWinnerUsersBidTotalForMatch(long matchDetailId, long winnerId) {
+		return userChoiceDao.getWinnerUsersBidTotalForMatch(matchDetailId, winnerId);
+	}
+
+	@Override
+	public void updateUserChoiceListForJob(List<UserChoice> userChoiceList,
+			MatchDetails matchDetails) {
+		 userChoiceDao.updateUserChoiceListForJob(userChoiceList, matchDetails);
 	}
 }
